@@ -1,0 +1,27 @@
+databases:
+  - engine: PG
+    name: db-example
+    version: "16"
+
+services:
+  - name: sample-dockerfile-nextjs
+    dockerfile_path: Dockerfile
+    github:
+      branch: main
+      deploy_on_push: true
+      repo: bikram20/next-self-host
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: apps-s-1vcpu-1gb
+    envs:
+      - key: DATABASE_URL
+        scope: RUN_AND_BUILD_TIME
+        value: ${db-example.DATABASE_URL}
+    depends_on:
+      - name: db-example
+        type: DATABASE
+
+name: sample-app-nextjs
+region: nyc
+features:
+  - buildpack-stack=ubuntu-22
