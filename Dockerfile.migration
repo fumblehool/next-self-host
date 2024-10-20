@@ -1,0 +1,11 @@
+FROM oven/bun:alpine AS builder
+WORKDIR /app
+COPY package.json bun.lockb ./
+RUN bun install --frozen-lockfile --production
+COPY app ./app
+
+FROM oven/bun:alpine
+WORKDIR /app
+COPY --from=builder /app /app
+ENV NODE_ENV=production
+CMD ["bun", "run", "app/db/migrate.ts"]
