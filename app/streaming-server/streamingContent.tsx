@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { fetchData } from './actions';
 
+
 async function Content({ id }: { id: number }) {
   const data = await fetchData(id);
   return (
