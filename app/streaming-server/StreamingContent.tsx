@@ -1,6 +1,14 @@
 import { Suspense } from 'react';
 import { fetchData } from './actions';
 
+function LoadingCard({ id }: { id: number }) {
+  return (
+    <div>
+      <h2>Content {id}</h2>
+      <p>Loading...</p>
+    </div>
+  );
+}
 
 async function Content({ id }: { id: number }) {
   const data = await fetchData(id);

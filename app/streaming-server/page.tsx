@@ -2,15 +2,6 @@ import StreamingContent from './StreamingContent';
 
 export const dynamic = 'force-dynamic';
 
-function LoadingCard({ id }: { id: number }) {
-  return (
-    <div>
-      <h2>Content {id}</h2>
-      <p>Loading...</p>
-    </div>
-  );
-}
-
 export default function Streaming() {
   return (
     <div>
